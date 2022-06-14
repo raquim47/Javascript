@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      overflow: hidden;
+    }
+    .slide-container {
+      width: 300vw;
+      transition: all 1s;
+    }
+    .slide-box {
+      width: 100vw;
+      float: left;
+    }
+    .slide-box div {
+      height: 300px;
+    }
+    .red {background-color: red;}
+    .orange {background-color: orange;}
+    .yellow {background-color: yellow;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="slide-container">
+      <div class="slide-box">
+        <div class="red"></div>
+      </div>
+      <div class="slide-box">
+        <div class="orange"></div>
+      </div>
+      <div class="slide-box">
+        <div class="yellow"></div>
+      </div>
+    </div>
+  </div> 
+  <button class="slide-1">1</button>
+  <button class="slide-2">2</button>
+  <button class="slide-3">3</button>
+  <button class="next">다음</button>
+  <button class="before">이전</button>
+
+  <script>
+    const slideWrap = document.querySelector('.slide-container')
+
+    function slide (a,b){
+      document.querySelector(a).addEventListener('click', function(){
+        slideWrap.style.transform = b
+      })
+    }
+    slide('.slide-1','translate(0)');
+    slide('.slide-2','translate(-100vw)');
+    slide('.slide-3','translate(-200vw)');
+
+    let 지금사진 = 1;
+
+    document.querySelector('.next').addEventListener('click', function(){
+      if(지금사진 < 3){
+        slideWrap.style.transform = `translate(-${지금사진}00vw)`;
+        지금사진 ++;
+      }
+    })
+    document.querySelector('.before').addEventListener('click', function(){
+      if(1 < 지금사진 && 지금사진 <= 3){
+        slideWrap.style.transform = `translate(-${지금사진-2}00vw)`;
+        지금사진 --;
+      }
+    })
+  </script>
+</body>
+</html>
